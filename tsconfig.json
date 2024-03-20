@@ -1,0 +1,48 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "commonjs",
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "strict": true,
+    "strictPropertyInitialization": false,
+    "allowJs": true,
+    "esModuleInterop": true,
+    "baseUrl": "./src",
+    "paths": {
+      "@config/*": [
+        "./config/*"
+      ],
+      "@models/*": [
+        "./models/*"
+      ],
+      "@routes/*": [
+        "./routes/*"
+      ],
+      "@controllers/*": [
+        "./controllers/*"
+      ],
+      "@services/*": [
+        "./services/*"
+      ],
+      "@errors/*": [
+        "./errors/*"
+      ],
+      "@middlewares/*": [
+        "./middlewares/*"
+      ],
+      "@helpers/*": [
+        "./helpers/*"
+      ],
+      "@dto/*": [
+        "./dto/*"
+      ],
+      "@enums/*": [
+        "./enums/*"
+      ],
+    },
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "skipLibCheck": true
+  }
+}
