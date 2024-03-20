@@ -1,0 +1,44 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model migrations {
+  id        Int    @id @default(autoincrement())
+  timestamp BigInt
+  name      String @db.VarChar(255)
+}
+
+model userTypes {
+  id          Int     @id @default(autoincrement())
+  name        String  @unique(map: "UQ_c3d9e1af185bc4387f0a51e7771") @db.Char(63)
+  description String? @db.Text
+  users       users[]
+}
+
+model users {
+  id         Int       @id @default(autoincrement())
+  type       Int       @default(1)
+  name       String    @db.Text
+  document   String    @unique(map: "UQ_c1b20b2a1883ed106c3e746c25a") @db.VarChar(14)
+  cnpj       String?   @db.VarChar(18)
+  phone      String    @unique(map: "UQ_a000cca60bcf04454e727699490") @db.VarChar(15)
+  fax        String?   @db.VarChar(15)
+  email      String    @unique(map: "UQ_97672ac88f789774dd47f7c8be3") @db.VarChar(127)
+  zipCode    String    @db.VarChar(15)
+  address    String    @db.Text
+  number     String    @db.VarChar(15)
+  complement String?   @db.Text
+  district   String    @db.Text
+  city       String    @db.Text
+  state      String    @db.Char(2)
+  createdAt  DateTime  @default(now()) @db.DateTime(0)
+  updatedAt  DateTime  @default(now()) @db.DateTime(0)
+  userTypes  userTypes @relation(fields: [type], references: [id], onDelete: Cascade, onUpdate: Restrict, map: "userTypeFK")
+
+  @@index([type], map: "userTypeFK")
+}
